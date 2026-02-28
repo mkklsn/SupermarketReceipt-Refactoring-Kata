@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using VerifyXunit;
 using Xunit;
 
+using SupermarketReceipt.Domain.Products;
+
 namespace SupermarketReceipt.Test
 {
     [UsesVerify]
@@ -15,7 +17,7 @@ namespace SupermarketReceipt.Test
         private Product _rice;
         private Product _apples;
         private Product _cherryTomatoes;
-        
+
         public SupermarketXUnitTest()
         {
             _catalog = new FakeCatalog();
@@ -32,7 +34,7 @@ namespace SupermarketReceipt.Test
             _catalog.AddProduct(_cherryTomatoes, 0.69);
 
         }
-        
+
         [Fact]
         public Task an_empty_shopping_cart_should_cost_nothing()
         {

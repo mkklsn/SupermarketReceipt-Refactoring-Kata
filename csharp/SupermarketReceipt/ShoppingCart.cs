@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Globalization;
 
+using SupermarketReceipt.Domain.Products;
+
 namespace SupermarketReceipt
 {
     public class ShoppingCart
@@ -40,7 +42,7 @@ namespace SupermarketReceipt
             foreach (var p in _productQuantities.Keys)
             {
                 var quantity = _productQuantities[p];
-                var quantityAsInt = (int) quantity;
+                var quantityAsInt = (int)quantity;
                 if (offers.ContainsKey(p))
                 {
                     var offer = offers[p];
@@ -82,7 +84,7 @@ namespace SupermarketReceipt
                 }
             }
         }
-        
+
         private string PrintPrice(double price)
         {
             return price.ToString("N2", Culture);

@@ -1,8 +1,8 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using NUnit;
 using NUnit.Framework;
 using VerifyNUnit;
+
+using SupermarketReceipt.Domain.Products;
 
 namespace SupermarketReceipt.Test
 {

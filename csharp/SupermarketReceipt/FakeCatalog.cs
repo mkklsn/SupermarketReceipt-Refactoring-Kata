@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using SupermarketReceipt.Domain.Products;
+
 namespace SupermarketReceipt
 {
     public class FakeCatalog : SupermarketCatalog

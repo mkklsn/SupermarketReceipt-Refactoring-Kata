@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using VerifyXunit;
 using Xunit;
 
+using SupermarketReceipt.Domain.Products;
+
 namespace SupermarketReceipt.Test
 {
     [UsesVerify]
@@ -18,14 +20,14 @@ namespace SupermarketReceipt.Test
             _receipt.AddProduct(_toothbrush, 1, 0.99, 0.99);
             return Verifier.Verify(new ReceiptPrinter().PrintReceipt(_receipt));
         }
-        
+
         [Fact]
         public Task quantityTwo()
         {
             _receipt.AddProduct(_toothbrush, 2, 0.99, 0.99 * 2);
             return Verifier.Verify(new ReceiptPrinter().PrintReceipt(_receipt));
         }
-        
+
         [Fact]
         public Task looseWeight()
         {
