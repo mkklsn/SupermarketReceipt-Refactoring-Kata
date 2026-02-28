@@ -29,7 +29,7 @@ namespace SupermarketReceipt.Test
         {
             _catalog = new InMemoryPriceCatalog();
             _offerCatalog = new InMemoryOfferCatalog();
-            _receiptBuilder = new ReceiptBuilder(_catalog);
+            _receiptBuilder = new ReceiptBuilder(_catalog, _offerCatalog);
             _checkoutService = new CheckoutService(_receiptBuilder);
             _theCart = new ShoppingCart();
 

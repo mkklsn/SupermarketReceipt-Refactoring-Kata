@@ -19,7 +19,14 @@ namespace SupermarketReceipt.Domain.Offers
 
         public Offer GetOffer(Product product)
         {
-            return _productOfferMap[product];
+            if (_productOfferMap.TryGetValue(product, out var offer))
+            {
+                return offer;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
