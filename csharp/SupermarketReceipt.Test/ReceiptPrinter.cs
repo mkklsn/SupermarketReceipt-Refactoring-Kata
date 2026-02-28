@@ -1,7 +1,9 @@
 using System.Globalization;
 using System.Text;
 
+using SupermarketReceipt.Domain.Offers;
 using SupermarketReceipt.Domain.Products;
+using SupermarketReceipt.Domain.Receipts;
 
 namespace SupermarketReceipt
 {

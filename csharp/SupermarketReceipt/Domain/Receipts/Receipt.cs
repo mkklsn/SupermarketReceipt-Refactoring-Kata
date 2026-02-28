@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 
+using SupermarketReceipt.Domain.Offers;
 using SupermarketReceipt.Domain.Products;
 
-namespace SupermarketReceipt
+namespace SupermarketReceipt.Domain.Receipts
 {
     public class Receipt
     {

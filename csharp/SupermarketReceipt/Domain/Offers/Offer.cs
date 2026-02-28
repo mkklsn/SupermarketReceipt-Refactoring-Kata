@@ -2,14 +2,6 @@ using SupermarketReceipt.Domain.Products;
 
 namespace SupermarketReceipt.Domain.Offers
 {
-    public enum SpecialOfferType
-    {
-        ThreeForTwo,
-        TenPercentDiscount,
-        TwoForAmount,
-        FiveForAmount
-    }
-
     public class Offer
     {
         private Product _product;

@@ -4,6 +4,7 @@ using SupermarketReceipt.Domain.Carts;
 using SupermarketReceipt.Domain.Offers;
 using SupermarketReceipt.Domain.Prices;
 using SupermarketReceipt.Domain.Products;
+using SupermarketReceipt.Domain.Receipts;
 
 namespace SupermarketReceipt
 {

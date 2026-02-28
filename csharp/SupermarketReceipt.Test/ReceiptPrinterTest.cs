@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 using VerifyXunit;
 using Xunit;
 
+using SupermarketReceipt.Domain.Offers;
 using SupermarketReceipt.Domain.Products;
+using SupermarketReceipt.Domain.Receipts;
 
 namespace SupermarketReceipt.Test
 {

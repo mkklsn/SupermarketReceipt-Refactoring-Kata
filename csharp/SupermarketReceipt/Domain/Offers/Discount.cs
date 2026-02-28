@@ -1,6 +1,6 @@
 using SupermarketReceipt.Domain.Products;
 
-namespace SupermarketReceipt
+namespace SupermarketReceipt.Domain.Offers
 {
     public class Discount
     {
