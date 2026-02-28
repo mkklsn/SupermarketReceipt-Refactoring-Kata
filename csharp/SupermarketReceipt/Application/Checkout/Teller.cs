@@ -6,7 +6,7 @@ using SupermarketReceipt.Domain.Prices;
 using SupermarketReceipt.Domain.Products;
 using SupermarketReceipt.Domain.Receipts;
 
-namespace SupermarketReceipt
+namespace SupermarketReceipt.Application.Checkout
 {
     public class Teller
     {
@@ -26,14 +26,13 @@ namespace SupermarketReceipt
         public Receipt ChecksOutArticlesFrom(ShoppingCart theCart)
         {
             var receipt = new Receipt();
-            var productQuantities = theCart.GetItems();
-            foreach (var pq in productQuantities)
+            foreach (var pq in theCart.Items)
             {
                 var p = pq.Product;
                 var quantity = pq.Quantity;
                 var unitPrice = _catalog.GetUnitPrice(p);
                 var price = quantity * unitPrice;
-                receipt.AddProduct(p, quantity, unitPrice, price);
+                receipt.AddItem(p, quantity, unitPrice, price);
             }
 
             theCart.HandleOffers(receipt, _offers, _catalog);

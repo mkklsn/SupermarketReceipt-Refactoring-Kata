@@ -26,7 +26,7 @@ namespace SupermarketReceipt
         public string PrintReceipt(Receipt receipt)
         {
             var result = new StringBuilder();
-            foreach (var item in receipt.GetItems())
+            foreach (var item in receipt.Items)
             {
                 string receiptItem = PrintReceiptItem(item);
                 result.Append(receiptItem);

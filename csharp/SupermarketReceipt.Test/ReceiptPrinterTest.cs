@@ -19,21 +19,21 @@ namespace SupermarketReceipt.Test
         [Fact]
         public Task oneLineItem()
         {
-            _receipt.AddProduct(_toothbrush, 1, 0.99, 0.99);
+            _receipt.AddItem(_toothbrush, 1, 0.99, 0.99);
             return Verifier.Verify(new ReceiptPrinter().PrintReceipt(_receipt));
         }
 
         [Fact]
         public Task quantityTwo()
         {
-            _receipt.AddProduct(_toothbrush, 2, 0.99, 0.99 * 2);
+            _receipt.AddItem(_toothbrush, 2, 0.99, 0.99 * 2);
             return Verifier.Verify(new ReceiptPrinter().PrintReceipt(_receipt));
         }
 
         [Fact]
         public Task looseWeight()
         {
-            _receipt.AddProduct(_apples, 2.3, 1.99, 1.99 * 2.3);
+            _receipt.AddItem(_apples, 2.3, 1.99, 1.99 * 2.3);
             return Verifier.Verify(new ReceiptPrinter().PrintReceipt(_receipt));
         }
 
@@ -41,8 +41,8 @@ namespace SupermarketReceipt.Test
         public Task total()
         {
 
-            _receipt.AddProduct(_toothbrush, 1, 0.99, 2 * 0.99);
-            _receipt.AddProduct(_apples, 0.75, 1.99, 1.99 * 0.75);
+            _receipt.AddItem(_toothbrush, 1, 0.99, 2 * 0.99);
+            _receipt.AddItem(_apples, 0.75, 1.99, 1.99 * 0.75);
             return Verifier.Verify(new ReceiptPrinter().PrintReceipt(_receipt));
         }
 
@@ -56,9 +56,9 @@ namespace SupermarketReceipt.Test
         [Fact]
         public Task printWholeReceipt()
         {
-            _receipt.AddProduct(_toothbrush, 1, 0.99, 0.99);
-            _receipt.AddProduct(_toothbrush, 2, 0.99, 2 * 0.99);
-            _receipt.AddProduct(_apples, 0.75, 1.99, 1.99 * 0.75);
+            _receipt.AddItem(_toothbrush, 1, 0.99, 0.99);
+            _receipt.AddItem(_toothbrush, 2, 0.99, 2 * 0.99);
+            _receipt.AddItem(_apples, 0.75, 1.99, 1.99 * 0.75);
             _receipt.AddDiscount(new Discount(_toothbrush, "3 for 2", 0.99));
             return Verifier.Verify(new ReceiptPrinter().PrintReceipt(_receipt));
         }

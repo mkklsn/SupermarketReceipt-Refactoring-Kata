@@ -7,8 +7,10 @@ namespace SupermarketReceipt.Domain.Receipts
 {
     public class Receipt
     {
-        private readonly List<Discount> _discounts = new List<Discount>();
-        private readonly List<ReceiptItem> _items = new List<ReceiptItem>();
+        private readonly List<Discount> _discounts = [];
+        private readonly List<ReceiptItem> _items = [];
+
+        public List<ReceiptItem> Items => [.. _items];
 
         public double GetTotalPrice()
         {
@@ -18,14 +20,9 @@ namespace SupermarketReceipt.Domain.Receipts
             return total;
         }
 
-        public void AddProduct(Product p, double quantity, double price, double totalPrice)
+        public void AddItem(Product p, double quantity, double price, double totalPrice)
         {
             _items.Add(new ReceiptItem(p, quantity, price, totalPrice));
-        }
-
-        public List<ReceiptItem> GetItems()
-        {
-            return new List<ReceiptItem>(_items);
         }
 
         public void AddDiscount(Discount discount)

@@ -7,6 +7,7 @@ using SupermarketReceipt.Domain.Offers;
 using SupermarketReceipt.Domain.Prices;
 using SupermarketReceipt.Domain.Products;
 using SupermarketReceipt.Domain.Receipts;
+using SupermarketReceipt.Application.Checkout;
 
 namespace SupermarketReceipt.Test
 {

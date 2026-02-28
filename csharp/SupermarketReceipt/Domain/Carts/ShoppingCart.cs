@@ -14,11 +14,7 @@ namespace SupermarketReceipt.Domain.Carts
         private readonly Dictionary<Product, double> _productQuantities = new Dictionary<Product, double>();
         private static readonly CultureInfo Culture = CultureInfo.CreateSpecificCulture("en-GB");
 
-
-        public List<ProductQuantity> GetItems()
-        {
-            return new List<ProductQuantity>(_items);
-        }
+        public List<ProductQuantity> Items => [.. _items];
 
         public void AddItem(Product product)
         {
