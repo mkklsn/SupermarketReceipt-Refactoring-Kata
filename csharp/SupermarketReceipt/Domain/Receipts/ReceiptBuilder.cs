@@ -50,12 +50,13 @@ namespace SupermarketReceipt.Domain.Receipts
 
                 var totalQuantity = group.Sum(x => x.Quantity);
                 var unitPrice = _priceCatalog.GetUnitPrice(group.Key);
+                decimal offerSetCount;
                 decimal totalDiscount;
                 Discount discount;
                 switch (offer.OfferType)
                 {
                     case SpecialOfferType.ThreeForTwo:
-                        var offerSetCount = Math.Round(totalQuantity / 3, MidpointRounding.ToZero);
+                        offerSetCount = Math.Round(totalQuantity / 3, MidpointRounding.ToZero);
                         totalDiscount = offerSetCount * unitPrice * -1m;
 
                         discount = new Discount(group.Key, "3 for 2", totalDiscount);
@@ -65,6 +66,13 @@ namespace SupermarketReceipt.Domain.Receipts
                         totalDiscount = totalQuantity * unitPrice * -0.1m;
 
                         discount = new Discount(group.Key, (int)offer.Argument + "% off", totalDiscount);
+                        receipt.AddDiscount(discount);
+                        break;
+                    case SpecialOfferType.TwoForAmount:
+                        offerSetCount = Math.Round(totalQuantity / 2, MidpointRounding.ToZero);
+                        totalDiscount = (offerSetCount * offer.Argument) - (totalQuantity * unitPrice);
+
+                        discount = new Discount(group.Key, "2 for " + offer.Argument, totalDiscount);
                         receipt.AddDiscount(discount);
                         break;
                 }
