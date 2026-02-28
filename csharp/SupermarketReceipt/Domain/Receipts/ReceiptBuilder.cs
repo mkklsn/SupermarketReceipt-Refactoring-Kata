@@ -69,10 +69,19 @@ namespace SupermarketReceipt.Domain.Receipts
                         receipt.AddDiscount(discount);
                         break;
                     case SpecialOfferType.TwoForAmount:
+                        if (totalQuantity < 2) continue;
                         offerSetCount = Math.Round(totalQuantity / 2, MidpointRounding.ToZero);
                         totalDiscount = (offerSetCount * offer.Argument) - (totalQuantity * unitPrice);
 
                         discount = new Discount(group.Key, "2 for " + offer.Argument, totalDiscount);
+                        receipt.AddDiscount(discount);
+                        break;
+                    case SpecialOfferType.FiveForAmount:
+                        if (totalQuantity < 5) continue;
+                        offerSetCount = Math.Round(totalQuantity / 5, MidpointRounding.ToZero);
+                        totalDiscount = (totalQuantity * unitPrice) - (offerSetCount * offer.Argument) - (totalQuantity % 5 * unitPrice);
+
+                        discount = new Discount(group.Key, "5 for " + offer.Argument, totalDiscount * -1m);
                         receipt.AddDiscount(discount);
                         break;
                 }
