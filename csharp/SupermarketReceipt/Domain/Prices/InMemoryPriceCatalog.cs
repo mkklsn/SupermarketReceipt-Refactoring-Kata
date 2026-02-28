@@ -6,16 +6,16 @@ namespace SupermarketReceipt.Domain.Prices
 {
     public class InMemoryPriceCatalog : IPriceCatalog
     {
-        private readonly IDictionary<string, double> _prices = new Dictionary<string, double>();
-        private readonly IDictionary<string, Product> _products = new Dictionary<string, Product>();
+        private readonly Dictionary<string, decimal> _prices = [];
+        private readonly Dictionary<string, Product> _products = [];
 
-        public void AddProduct(Product product, double price)
+        public void AddProduct(Product product, decimal price)
         {
             _products.Add(product.Name, product);
             _prices.Add(product.Name, price);
         }
 
-        public double GetUnitPrice(Product p)
+        public decimal GetUnitPrice(Product p)
         {
             return _prices[p.Name];
         }

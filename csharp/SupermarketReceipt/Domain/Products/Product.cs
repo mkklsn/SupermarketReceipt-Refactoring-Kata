@@ -15,8 +15,7 @@ namespace SupermarketReceipt.Domain.Products
 
         public override bool Equals(object obj)
         {
-            var product = obj as Product;
-            return product != null &&
+            return obj is Product product &&
                    Name == product.Name &&
                    Unit == product.Unit;
         }

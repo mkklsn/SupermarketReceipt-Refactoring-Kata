@@ -89,7 +89,7 @@ namespace SupermarketReceipt
             return line.ToString();
         }
 
-        private string PrintPrice(double price)
+        private string PrintPrice(decimal price)
         {
             return price.ToString("N2", Culture);
         }

@@ -4,16 +4,15 @@ namespace SupermarketReceipt.Domain.Offers
 {
     public class Offer
     {
-        private Product _product;
-
-        public Offer(SpecialOfferType offerType, Product product, double argument)
+        public Offer(SpecialOfferType offerType, Product product, decimal argument)
         {
             OfferType = offerType;
             Argument = argument;
-            _product = product;
+            Product = product;
         }
 
         public SpecialOfferType OfferType { get; }
-        public double Argument { get; }
+        public decimal Argument { get; }
+        public Product Product { get; }
     }
 }
