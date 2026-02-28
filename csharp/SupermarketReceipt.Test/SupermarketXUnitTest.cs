@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using VerifyXunit;
 using Xunit;
 
+using SupermarketReceipt.Domain.Carts;
+using SupermarketReceipt.Domain.Offers;
 using SupermarketReceipt.Domain.Prices;
 using SupermarketReceipt.Domain.Products;
 

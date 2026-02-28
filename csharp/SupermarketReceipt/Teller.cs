@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using SupermarketReceipt.Domain.Carts;
+using SupermarketReceipt.Domain.Offers;
 using SupermarketReceipt.Domain.Prices;
 using SupermarketReceipt.Domain.Products;
 

@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Globalization;
 
+using SupermarketReceipt.Domain.Offers;
 using SupermarketReceipt.Domain.Prices;
 using SupermarketReceipt.Domain.Products;
 
-namespace SupermarketReceipt
+namespace SupermarketReceipt.Domain.Carts
 {
     public class ShoppingCart
     {

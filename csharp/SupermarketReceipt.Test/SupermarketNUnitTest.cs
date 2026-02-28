@@ -2,6 +2,8 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using VerifyNUnit;
 
+using SupermarketReceipt.Domain.Carts;
+using SupermarketReceipt.Domain.Offers;
 using SupermarketReceipt.Domain.Products;
 using SupermarketReceipt.Domain.Prices;
 
