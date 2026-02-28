@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 
+using SupermarketReceipt.Domain.Prices;
 using SupermarketReceipt.Domain.Products;
 
 namespace SupermarketReceipt
@@ -37,7 +38,7 @@ namespace SupermarketReceipt
             }
         }
 
-        public void HandleOffers(Receipt receipt, Dictionary<Product, Offer> offers, SupermarketCatalog catalog)
+        public void HandleOffers(Receipt receipt, Dictionary<Product, Offer> offers, IPriceCatalog catalog)
         {
             foreach (var p in _productQuantities.Keys)
             {

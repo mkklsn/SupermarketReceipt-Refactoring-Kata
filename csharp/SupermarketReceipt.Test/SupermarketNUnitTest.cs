@@ -3,13 +3,14 @@ using NUnit.Framework;
 using VerifyNUnit;
 
 using SupermarketReceipt.Domain.Products;
+using SupermarketReceipt.Domain.Prices;
 
 namespace SupermarketReceipt.Test
 {
 
     public class SupermarketNUnitTest
     {
-        private SupermarketCatalog _catalog;
+        private IPriceCatalog _catalog;
         private Teller _teller;
         private ShoppingCart _theCart;
         private Product _toothbrush;
@@ -19,7 +20,7 @@ namespace SupermarketReceipt.Test
 
         public SupermarketNUnitTest()
         {
-            _catalog = new FakeCatalog();
+            _catalog = new InMemoryPriceCatalog();
             _teller = new Teller(_catalog);
             _theCart = new ShoppingCart();
 

@@ -1,8 +1,8 @@
 using SupermarketReceipt.Domain.Products;
 
-namespace SupermarketReceipt
+namespace SupermarketReceipt.Domain.Prices
 {
-    public interface SupermarketCatalog
+    public interface IPriceCatalog
     {
         void AddProduct(Product product, double price);
 

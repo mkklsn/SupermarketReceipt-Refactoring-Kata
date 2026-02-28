@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 
+using SupermarketReceipt.Domain.Prices;
 using SupermarketReceipt.Domain.Products;
 
 namespace SupermarketReceipt
 {
     public class Teller
     {
-        private readonly SupermarketCatalog _catalog;
+        private readonly IPriceCatalog _catalog;
         private readonly Dictionary<Product, Offer> _offers = new Dictionary<Product, Offer>();
 
-        public Teller(SupermarketCatalog catalog)
+        public Teller(IPriceCatalog catalog)
         {
             _catalog = catalog;
         }

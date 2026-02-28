@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using VerifyXunit;
 using Xunit;
 
+using SupermarketReceipt.Domain.Prices;
 using SupermarketReceipt.Domain.Products;
 
 namespace SupermarketReceipt.Test
@@ -10,7 +11,7 @@ namespace SupermarketReceipt.Test
     [UsesVerify]
     public class SupermarketXUnitTest
     {
-        private SupermarketCatalog _catalog;
+        private IPriceCatalog _catalog;
         private Teller _teller;
         private ShoppingCart _theCart;
         private Product _toothbrush;
@@ -20,7 +21,7 @@ namespace SupermarketReceipt.Test
 
         public SupermarketXUnitTest()
         {
-            _catalog = new FakeCatalog();
+            _catalog = new InMemoryPriceCatalog();
             _teller = new Teller(_catalog);
             _theCart = new ShoppingCart();
 
