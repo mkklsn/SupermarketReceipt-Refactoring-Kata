@@ -1,3 +1,4 @@
+using System;
 using SupermarketReceipt.Domain.Products;
 
 namespace SupermarketReceipt.Domain.Prices
@@ -9,6 +10,6 @@ namespace SupermarketReceipt.Domain.Prices
     {
         void AddProduct(Product product, decimal price);
 
-        decimal GetUnitPrice(Product product);
+        decimal GetUnitPrice(Guid productId);
     }
 }

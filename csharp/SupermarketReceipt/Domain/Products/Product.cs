@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace SupermarketReceipt.Domain.Products
@@ -9,10 +10,12 @@ namespace SupermarketReceipt.Domain.Products
     {
         public Product(string name, ProductUnit unit)
         {
+            Id = Guid.NewGuid();
             Name = name;
             Unit = unit;
         }
 
+        public Guid Id { get; }
         public string Name { get; }
         public ProductUnit Unit { get; }
 

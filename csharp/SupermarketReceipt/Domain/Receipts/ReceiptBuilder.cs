@@ -37,7 +37,7 @@ namespace SupermarketReceipt.Domain.Receipts
 
             foreach (var item in shoppingCart.Items)
             {
-                var unitPrice = _priceCatalog.GetUnitPrice(item.Product);
+                var unitPrice = _priceCatalog.GetUnitPrice(item.Product.Id);
                 var totalPrice = Math.Round(unitPrice * item.Quantity, 2, MidpointRounding.ToZero);
 
                 receipt.AddItem(item.Product, item.Quantity, unitPrice, totalPrice);

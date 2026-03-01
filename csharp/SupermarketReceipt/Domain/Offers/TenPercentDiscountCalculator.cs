@@ -20,7 +20,7 @@ namespace SupermarketReceipt.Domain.Offers
         public Discount CalculateDiscount(IGrouping<Product, ReceiptItem> group, Offer offer)
         {
             var totalQuantity = group.Sum(x => x.Quantity);
-            var unitPrice = _priceCatalog.GetUnitPrice(group.Key);
+            var unitPrice = _priceCatalog.GetUnitPrice(group.Key.Id);
 
             var totalDiscount = totalQuantity * unitPrice * -0.1m;
             var discount = new Discount(group.Key, (int)offer.Argument + "% off", totalDiscount);

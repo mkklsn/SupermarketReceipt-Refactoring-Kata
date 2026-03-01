@@ -76,7 +76,7 @@ namespace SupermarketReceipt.Test
             _theCart.AddItem(_toothbrush, 1.0m);
             _theCart.AddItem(_toothbrush, 1.0m);
             _theCart.AddItem(_toothbrush, 1.0m);
-            _offerCatalog.AddOffer(new Offer(SpecialOfferType.ThreeForTwo, _toothbrush, _catalog.GetUnitPrice(_toothbrush)));
+            _offerCatalog.AddOffer(new Offer(SpecialOfferType.ThreeForTwo, _toothbrush, _catalog.GetUnitPrice(_toothbrush.Id)));
             Receipt receipt = _checkoutService.Checkout(_theCart);
             return Verifier.Verify(new ReceiptPrinter(40).PrintReceipt(receipt));
         }
@@ -89,7 +89,7 @@ namespace SupermarketReceipt.Test
             _theCart.AddItem(_toothbrush, 1.0m);
             _theCart.AddItem(_toothbrush, 1.0m);
             _theCart.AddItem(_toothbrush, 1.0m);
-            _offerCatalog.AddOffer(new Offer(SpecialOfferType.ThreeForTwo, _toothbrush, _catalog.GetUnitPrice(_toothbrush)));
+            _offerCatalog.AddOffer(new Offer(SpecialOfferType.ThreeForTwo, _toothbrush, _catalog.GetUnitPrice(_toothbrush.Id)));
             Receipt receipt = _checkoutService.Checkout(_theCart);
             return Verifier.Verify(new ReceiptPrinter(40).PrintReceipt(receipt));
         }
