@@ -1,9 +1,11 @@
 using System.Collections.Generic;
-using System.Globalization;
 using SupermarketReceipt.Domain.Products;
 
 namespace SupermarketReceipt.Domain.Carts
 {
+    /// <summary>
+    /// A container for a collection of <see cref="CartItem"/>
+    /// </summary>
     public class ShoppingCart
     {
         private readonly List<CartItem> _items = [];

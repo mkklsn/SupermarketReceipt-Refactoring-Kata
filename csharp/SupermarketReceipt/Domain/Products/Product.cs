@@ -2,6 +2,9 @@ using System.Collections.Generic;
 
 namespace SupermarketReceipt.Domain.Products
 {
+    /// <summary>
+    /// Contains product details
+    /// </summary>
     public class Product
     {
         public Product(string name, ProductUnit unit)

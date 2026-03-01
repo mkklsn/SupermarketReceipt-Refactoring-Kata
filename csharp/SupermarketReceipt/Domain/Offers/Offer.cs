@@ -2,6 +2,9 @@ using SupermarketReceipt.Domain.Products;
 
 namespace SupermarketReceipt.Domain.Offers
 {
+    /// <summary>
+    /// Contains a product and offer type and offer detail
+    /// </summary>
     public class Offer
     {
         public Offer(SpecialOfferType offerType, Product product, decimal argument)

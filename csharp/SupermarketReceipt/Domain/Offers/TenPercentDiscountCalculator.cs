@@ -5,6 +5,9 @@ using SupermarketReceipt.Domain.Receipts;
 
 namespace SupermarketReceipt.Domain.Offers
 {
+    /// <summary>
+    /// Calculates a discount based on a percentage of a product's price
+    /// </summary>
     public class TenPercentDiscountCalculator : IOfferCalculator
     {
         private readonly IPriceCatalog _priceCatalog;

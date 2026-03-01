@@ -6,6 +6,9 @@ using SupermarketReceipt.Domain.Receipts;
 
 namespace SupermarketReceipt.Domain.Offers
 {
+    /// <summary>
+    /// Calculates a discount based on a product and quantity (5) constraint
+    /// </summary>
     public class FiveForAmountOfferCalculator : IOfferCalculator
     {
         private readonly IPriceCatalog _priceCatalog;

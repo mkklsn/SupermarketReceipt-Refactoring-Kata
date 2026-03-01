@@ -3,6 +3,9 @@ using SupermarketReceipt.Domain.Products;
 
 namespace SupermarketReceipt.Domain.Offers
 {
+    /// <summary>
+    /// In memory catalog that contains a dictionary of product and offer
+    /// </summary>
     public class InMemoryOfferCatalog : IOfferCatalog
     {
         private readonly Dictionary<Product, Offer> _productOfferMap;

@@ -7,11 +7,17 @@ using SupermarketReceipt.Domain.Products;
 
 namespace SupermarketReceipt.Domain.Receipts
 {
+    /// <summary>
+    /// Provides an interface for building a <see cref="Receipt"/> 
+    /// </summary>
     public interface IReceiptBuilder
     {
         public Receipt Build(ShoppingCart shoppingCart);
     }
 
+    /// <summary>
+    /// Builds a <see cref="Receipt"/> 
+    /// </summary>
     public class ReceiptBuilder : IReceiptBuilder
     {
         private readonly IPriceCatalog _priceCatalog;
@@ -37,12 +43,12 @@ namespace SupermarketReceipt.Domain.Receipts
                 receipt.AddItem(item.Product, item.Quantity, unitPrice, totalPrice);
             }
 
-            CalculateDiscounts(receipt);
+            ApplyDiscountIfAny(receipt);
 
             return receipt;
         }
 
-        public void CalculateDiscounts(Receipt receipt)
+        public void ApplyDiscountIfAny(Receipt receipt)
         {
             var groups = receipt.Items.GroupBy(i => i.Product);
 

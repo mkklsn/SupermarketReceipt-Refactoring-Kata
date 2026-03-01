@@ -2,6 +2,9 @@ using SupermarketReceipt.Domain.Prices;
 
 namespace SupermarketReceipt.Domain.Offers
 {
+    /// <summary>
+    /// Creates an offer calculator based on offer type
+    /// </summary>
     public class OfferCalculatorFactory : IOfferCalculatorFactory
     {
         private readonly IPriceCatalog _priceCatalog;

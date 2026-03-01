@@ -5,6 +5,9 @@ using SupermarketReceipt.Domain.Products;
 
 namespace SupermarketReceipt.Domain.Receipts
 {
+    /// <summary>
+    /// A container for a collection of <see cref="ReceiptItem"/> and <see cref="Discount"/>
+    /// </summary>
     public class Receipt
     {
         private readonly List<Discount> _discounts = [];
