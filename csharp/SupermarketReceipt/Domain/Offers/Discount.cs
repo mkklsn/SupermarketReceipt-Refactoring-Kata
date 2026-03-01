@@ -5,17 +5,10 @@ namespace SupermarketReceipt.Domain.Offers
     /// <summary>
     /// Contains a discount amount for a product
     /// </summary>
-    public class Discount
+    public class Discount(Product product, string description, decimal discountAmount)
     {
-        public Discount(Product product, string description, decimal discountAmount)
-        {
-            Product = product;
-            Description = description;
-            DiscountAmount = discountAmount;
-        }
-
-        public string Description { get; }
-        public decimal DiscountAmount { get; }
-        public Product Product { get; }
+        public string Description { get; } = description;
+        public decimal DiscountAmount { get; } = discountAmount;
+        public Product Product { get; } = product;
     }
 }

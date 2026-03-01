@@ -18,18 +18,11 @@ namespace SupermarketReceipt.Domain.Receipts
     /// <summary>
     /// Builds a <see cref="Receipt"/> 
     /// </summary>
-    public class ReceiptBuilder : IReceiptBuilder
+    public class ReceiptBuilder(IPriceCatalog priceCatalog, IOfferCatalog offerCatalog, IOfferCalculatorFactory offerCalculatorFactory) : IReceiptBuilder
     {
-        private readonly IPriceCatalog _priceCatalog;
-        private readonly IOfferCatalog _offerCatalog;
-        private readonly IOfferCalculatorFactory _offerCalculatorFactory;
-
-        public ReceiptBuilder(IPriceCatalog priceCatalog, IOfferCatalog offerCatalog, IOfferCalculatorFactory offerCalculatorFactory)
-        {
-            _priceCatalog = priceCatalog;
-            _offerCatalog = offerCatalog;
-            _offerCalculatorFactory = offerCalculatorFactory;
-        }
+        private readonly IPriceCatalog _priceCatalog = priceCatalog;
+        private readonly IOfferCatalog _offerCatalog = offerCatalog;
+        private readonly IOfferCalculatorFactory _offerCalculatorFactory = offerCalculatorFactory;
 
         public Receipt Build(ShoppingCart shoppingCart)
         {

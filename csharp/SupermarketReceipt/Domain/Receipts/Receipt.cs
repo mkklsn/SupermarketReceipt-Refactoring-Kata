@@ -33,7 +33,7 @@ namespace SupermarketReceipt.Domain.Receipts
             _discounts.Add(discount);
         }
 
-        public List<Discount> GetDiscounts()
+        public IEnumerable<Discount> GetDiscounts()
         {
             return _discounts;
         }

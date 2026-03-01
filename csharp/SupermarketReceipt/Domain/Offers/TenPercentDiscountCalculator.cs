@@ -8,14 +8,9 @@ namespace SupermarketReceipt.Domain.Offers
     /// <summary>
     /// Calculates a discount based on a percentage of a product's price
     /// </summary>
-    public class TenPercentDiscountCalculator : IOfferCalculator
+    public class TenPercentDiscountCalculator(IPriceCatalog priceCatalog) : IOfferCalculator
     {
-        private readonly IPriceCatalog _priceCatalog;
-
-        public TenPercentDiscountCalculator(IPriceCatalog priceCatalog)
-        {
-            _priceCatalog = priceCatalog;
-        }
+        private readonly IPriceCatalog _priceCatalog = priceCatalog;
 
         public Discount CalculateDiscount(IGrouping<Product, ReceiptItem> group, Offer offer)
         {

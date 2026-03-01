@@ -13,14 +13,9 @@ namespace SupermarketReceipt.Application.Checkout
         public Receipt Checkout(ShoppingCart shoppingCart);
     }
 
-    public class CheckoutService : ICheckoutService
+    public class CheckoutService(IReceiptBuilder receiptBuilder) : ICheckoutService
     {
-        private readonly IReceiptBuilder _receiptBuilder;
-
-        public CheckoutService(IReceiptBuilder receiptBuilder)
-        {
-            _receiptBuilder = receiptBuilder;
-        }
+        private readonly IReceiptBuilder _receiptBuilder = receiptBuilder;
 
         public Receipt Checkout(ShoppingCart shoppingCart)
         {

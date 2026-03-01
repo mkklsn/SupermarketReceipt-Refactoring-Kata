@@ -5,30 +5,20 @@ namespace SupermarketReceipt.Domain.Offers
     /// <summary>
     /// Creates an offer calculator based on offer type
     /// </summary>
-    public class OfferCalculatorFactory : IOfferCalculatorFactory
+    public class OfferCalculatorFactory(IPriceCatalog priceCatalog) : IOfferCalculatorFactory
     {
-        private readonly IPriceCatalog _priceCatalog;
-
-        public OfferCalculatorFactory(IPriceCatalog priceCatalog)
-        {
-            _priceCatalog = priceCatalog;
-        }
+        private readonly IPriceCatalog _priceCatalog = priceCatalog;
 
         public IOfferCalculator Build(SpecialOfferType specialOfferType)
         {
-            switch (specialOfferType)
+            return specialOfferType switch
             {
-                case SpecialOfferType.ThreeForTwo:
-                    return new ThreeForTwoOfferCalculator(_priceCatalog);
-                case SpecialOfferType.TenPercentDiscount:
-                    return new TenPercentDiscountCalculator(_priceCatalog);
-                case SpecialOfferType.TwoForAmount:
-                    return new TwoForAmountOfferCalculator(_priceCatalog);
-                case SpecialOfferType.FiveForAmount:
-                    return new FiveForAmountOfferCalculator(_priceCatalog);
-                default:
-                    return null;
-            }
+                SpecialOfferType.ThreeForTwo => new ThreeForTwoOfferCalculator(_priceCatalog),
+                SpecialOfferType.TenPercentDiscount => new TenPercentDiscountCalculator(_priceCatalog),
+                SpecialOfferType.TwoForAmount => new TwoForAmountOfferCalculator(_priceCatalog),
+                SpecialOfferType.FiveForAmount => new FiveForAmountOfferCalculator(_priceCatalog),
+                _ => null,
+            };
         }
     }
 }

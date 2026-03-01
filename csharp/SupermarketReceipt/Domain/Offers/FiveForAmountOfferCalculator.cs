@@ -9,14 +9,9 @@ namespace SupermarketReceipt.Domain.Offers
     /// <summary>
     /// Calculates a discount based on a product and quantity (5) constraint
     /// </summary>
-    public class FiveForAmountOfferCalculator : IOfferCalculator
+    public class FiveForAmountOfferCalculator(IPriceCatalog priceCatalog) : IOfferCalculator
     {
-        private readonly IPriceCatalog _priceCatalog;
-
-        public FiveForAmountOfferCalculator(IPriceCatalog priceCatalog)
-        {
-            _priceCatalog = priceCatalog;
-        }
+        private readonly IPriceCatalog _priceCatalog = priceCatalog;
 
         public Discount CalculateDiscount(IGrouping<Product, ReceiptItem> group, Offer offer)
         {

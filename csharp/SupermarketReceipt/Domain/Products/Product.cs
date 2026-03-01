@@ -6,18 +6,11 @@ namespace SupermarketReceipt.Domain.Products
     /// <summary>
     /// Contains product details
     /// </summary>
-    public class Product
+    public class Product(string name, ProductUnit unit)
     {
-        public Product(string name, ProductUnit unit)
-        {
-            Id = Guid.NewGuid();
-            Name = name;
-            Unit = unit;
-        }
-
-        public Guid Id { get; }
-        public string Name { get; }
-        public ProductUnit Unit { get; }
+        public Guid Id { get; } = Guid.NewGuid();
+        public string Name { get; } = name;
+        public ProductUnit Unit { get; } = unit;
 
         public override bool Equals(object obj)
         {
