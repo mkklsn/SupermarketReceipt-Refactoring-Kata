@@ -3,6 +3,7 @@ using System.Linq;
 using SupermarketReceipt.Domain.Carts;
 using SupermarketReceipt.Domain.Offers;
 using SupermarketReceipt.Domain.Prices;
+using SupermarketReceipt.Domain.Products;
 
 namespace SupermarketReceipt.Domain.Receipts
 {
@@ -15,11 +16,13 @@ namespace SupermarketReceipt.Domain.Receipts
     {
         private readonly IPriceCatalog _priceCatalog;
         private readonly IOfferCatalog _offerCatalog;
+        private readonly IOfferCalculatorFactory _offerCalculatorFactory;
 
-        public ReceiptBuilder(IPriceCatalog priceCatalog, IOfferCatalog offerCatalog)
+        public ReceiptBuilder(IPriceCatalog priceCatalog, IOfferCatalog offerCatalog, IOfferCalculatorFactory offerCalculatorFactory)
         {
             _priceCatalog = priceCatalog;
             _offerCatalog = offerCatalog;
+            _offerCalculatorFactory = offerCalculatorFactory;
         }
 
         public Receipt Build(ShoppingCart shoppingCart)
@@ -43,48 +46,18 @@ namespace SupermarketReceipt.Domain.Receipts
         {
             var groups = receipt.Items.GroupBy(i => i.Product);
 
-            foreach (var group in groups)
+            foreach (IGrouping<Product, ReceiptItem> group in groups)
             {
                 var offer = _offerCatalog.GetOffer(group.Key);
                 if (offer == null) continue;
 
-                var totalQuantity = group.Sum(x => x.Quantity);
-                var unitPrice = _priceCatalog.GetUnitPrice(group.Key);
-                decimal offerSetCount;
-                decimal totalDiscount;
-                Discount discount;
-                switch (offer.OfferType)
-                {
-                    case SpecialOfferType.ThreeForTwo:
-                        offerSetCount = Math.Round(totalQuantity / 3, MidpointRounding.ToZero);
-                        totalDiscount = offerSetCount * unitPrice * -1m;
+                var calculator = _offerCalculatorFactory.Build(offer.OfferType);
+                if (calculator == null) continue;
 
-                        discount = new Discount(group.Key, "3 for 2", totalDiscount);
-                        receipt.AddDiscount(discount);
-                        break;
-                    case SpecialOfferType.TenPercentDiscount:
-                        totalDiscount = totalQuantity * unitPrice * -0.1m;
+                var discount = calculator.CalculateDiscount(group, offer);
+                if (discount == null) continue;
 
-                        discount = new Discount(group.Key, (int)offer.Argument + "% off", totalDiscount);
-                        receipt.AddDiscount(discount);
-                        break;
-                    case SpecialOfferType.TwoForAmount:
-                        if (totalQuantity < 2) continue;
-                        offerSetCount = Math.Round(totalQuantity / 2, MidpointRounding.ToZero);
-                        totalDiscount = (offerSetCount * offer.Argument) - (totalQuantity * unitPrice);
-
-                        discount = new Discount(group.Key, "2 for " + offer.Argument, totalDiscount);
-                        receipt.AddDiscount(discount);
-                        break;
-                    case SpecialOfferType.FiveForAmount:
-                        if (totalQuantity < 5) continue;
-                        offerSetCount = Math.Round(totalQuantity / 5, MidpointRounding.ToZero);
-                        totalDiscount = (totalQuantity * unitPrice) - (offerSetCount * offer.Argument) - (totalQuantity % 5 * unitPrice);
-
-                        discount = new Discount(group.Key, "5 for " + offer.Argument, totalDiscount * -1m);
-                        receipt.AddDiscount(discount);
-                        break;
-                }
+                receipt.AddDiscount(discount);
             }
         }
     }

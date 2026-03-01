@@ -18,6 +18,7 @@ namespace SupermarketReceipt.Test
         private IPriceCatalog _catalog;
         private IOfferCatalog _offerCatalog;
         private ICheckoutService _checkoutService;
+        private IOfferCalculatorFactory _offerCalculatorFactory;
         private IReceiptBuilder _receiptBuilder;
         private ShoppingCart _theCart;
         private Product _toothbrush;
@@ -29,7 +30,8 @@ namespace SupermarketReceipt.Test
         {
             _catalog = new InMemoryPriceCatalog();
             _offerCatalog = new InMemoryOfferCatalog();
-            _receiptBuilder = new ReceiptBuilder(_catalog, _offerCatalog);
+            _offerCalculatorFactory = new OfferCalculatorFactory(_catalog);
+            _receiptBuilder = new ReceiptBuilder(_catalog, _offerCatalog, _offerCalculatorFactory);
             _checkoutService = new CheckoutService(_receiptBuilder);
             _theCart = new ShoppingCart();
 
